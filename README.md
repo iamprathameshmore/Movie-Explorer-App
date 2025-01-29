@@ -100,7 +100,7 @@ In case you want to add the MongoDB integration for storing favorites, here's a 
 
 ## Demo Video
 
-Click [here]([link-to-your-video](https://github.com/iamprathameshmore/Movie-Explorer-App/tree/main/demo)) to watch a short demo showcasing the features of the app.
+Click [here](https://github.com/iamprathameshmore/Movie-Explorer-App/tree/main/demo) to watch a short demo showcasing the features of the app.
 
 ## Contributing
 
