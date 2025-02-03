@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { isAuthenticated, getUserEmail, logout } from "../auth.js";
+import { useNavigate } from "react-router-dom";
+import { getUserEmail, logout } from "../auth.js";
 
-function Home() {
+function FavouirtesMovie() {
   const [movies, setMovies] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("Avengers");
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("Avengers");
   const userEmail = getUserEmail();
 
   useEffect(() => {
@@ -26,24 +26,7 @@ function Home() {
     };
 
     fetchMovies();
-  }, [searchQuery]);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        setUserEmail(decoded.email);
-      } catch (error) {
-        console.error("Invalid token:", error);
-        localStorage.removeItem("token");
-      }
-    }
   }, []);
-
-  const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
-  };
 
   const handleMovieClick = (movieName) => {
     navigate(`/${movieName}`);
@@ -51,7 +34,7 @@ function Home() {
 
   const handleLogout = () => {
     logout();
-    window.location.reload();
+    navigate('/')
   };
 
   return (
@@ -59,24 +42,13 @@ function Home() {
       <div className="w-full text-white flex justify-between items-center p-4 shadow-md">
         <div className="text-lg font-semibold">MovieApp</div>
         <div className="flex justify-between">
-          {isAuthenticated() ? (
-            <>
-              <span className="px-4 py-2">{userEmail}</span>
-              <span className="px-4 py-2">Favouirtes</span>
-              <button onClick={handleLogout} className="px-4 py-2">
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <button className="px-4 py-2 hover:text-indigo-600">
-                <Link to="/log-in">Log In</Link>
-              </button>
-              <button className="px-4 py-2 hover:text-indigo-600">
-                <Link to="/sign-up">Sign Up</Link>
-              </button>
-            </>
-          )}
+          <>
+            <span className="px-4 py-2">{userEmail}</span>
+            <span className="px-4 py-2">Favouirtes</span>
+            <button onClick={handleLogout} className="px-4 py-2">
+              Logout
+            </button>
+          </>
         </div>
       </div>
 
@@ -86,18 +58,8 @@ function Home() {
         </h2>
 
         <p className="mx-auto mt-2 max-w-2xl text-center text-3xl font-semibold tracking-tight text-gray-100 sm:text-4xl">
-          Explore the World of Movies!
+          List of Your Faviourites Movies 💗
         </p>
-
-        <div className="mt-10 flex justify-center">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={handleSearch}
-            className="w-full sm:w-96 px-4 py-1 border   text-sm text-white rounded-none placeholder:text-indigo-800"
-            placeholder="Search for a movie..."
-          />
-        </div>
 
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {movies.length > 0 ? (
@@ -138,4 +100,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default FavouirtesMovie;
