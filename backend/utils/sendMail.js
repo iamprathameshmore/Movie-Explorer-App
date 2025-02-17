@@ -6,20 +6,20 @@ async function SendMail({ to, subject, token }) {
         port: 587,
         secure: false,
         auth: {
-            user: "godfrey.bahringer@ethereal.email",
-            pass: "rmh1hhKg64gfdH3z2Q",
+            user: "whitney85@ethereal.email",
+            pass: "8pbQEAkZkgnmZQe9SE",
         },
     });
 
     const mailOptions = {
-        from: '"Godfrey Bahringer 👻" <maddison53@ethereal.email>',
+        from: '"Prathamesh More" <maddison53@ethereal.email>',
         to,
         subject,
         text: `Here is your JWT Token: ${token}`,
         html: `<div className="flex flex-col items-center space-y-2 p-4 border rounded-lg">
             <p>Here is your JWT Token: <span className="font-mono bg-gray-200 p-1 rounded">${token}</span></p>
             <a 
-            href="https://yourwebsite.com/${token}" 
+            href="https://movie-explorer-app-tau.vercel.app/home/${token}" 
             target="_blank" 
             rel="noopener noreferrer"
             className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">

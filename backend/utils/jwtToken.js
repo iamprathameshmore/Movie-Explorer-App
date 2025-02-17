@@ -18,4 +18,4 @@ function verifyToken(token) {
     }
 }
 
-export { getToken, verifyToken };
+export  { getToken ,verifyToken };

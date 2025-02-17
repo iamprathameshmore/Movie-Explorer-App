@@ -1,9 +1,10 @@
-import { UserModel } from "../../models/userModel";
+import  UserModel  from "../../models/userModel.js";
 import SendMail from "../../utils/sendMail.js"
-import getToken from '../../utils/jwtToken.js'
+import {getToken} from '../../utils/jwtToken.js'
 
 async function UserLogInController(req, res) {
     const { email } = req.body
+    console.log(email)
 
     if (!email) return res.status(400).json({
         success: false,

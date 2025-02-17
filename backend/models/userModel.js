@@ -5,13 +5,17 @@ const UserModelSchema = new mongoose.Schema({
     otp: String,
     email: {
         type: String,
-        require: true,
+        required: true, 
         unique: true
-
     },
-    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }]
-})
+    favorites: [{
+        movieId: String,
+        title: String,
+        year: Number,
+        poster: String
+    }]
+});
 
-const UserModel = mongoose.model("User", UserModelSchema)
+const UserModel = mongoose.model("User", UserModelSchema);
 
-export default UserModel
+export default UserModel;
