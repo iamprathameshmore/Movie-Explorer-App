@@ -3,10 +3,11 @@ import SendMail from "../../utils/sendMail.js"
 import {getToken} from '../../utils/jwtToken.js'
 
 async function UserLogInController(req, res) {
-    const { email } = req.body
-    console.log(email)
 
-    if (!email) return res.status(400).json({
+    const { email} = req.body
+    console.log(email, token)
+
+    if (!email ) return res.status(400).json({
         success: false,
         msg: "email not be null"
     });
@@ -21,16 +22,17 @@ async function UserLogInController(req, res) {
 
         const token = getToken({ id: user.id, name: user.name, email })
 
-        await SendMail({
-            to: email,
-            subject: "login To movie App",
-            token: token
+        // await SendMail({
+        //     to: email,
+        //     subject: "login To movie App",
+        //     token: token
 
-        })
+        // })
 
         return res.status(200).json({
             success: true,
             msg: "mail send successfully",
+            token:token
         })
 
     } catch (error) {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { isAuthenticated, getUserEmail, logout } from "../auth.js";
+import MovieComp from "./comp/mov-comp.jsx";
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -102,30 +103,13 @@ function Home() {
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {movies.length > 0 ? (
             movies.map((movie) => (
-              <div
-                key={movie.imdbID}
-                className="relative group shadow-lg rounded-lg overflow-hidden"
-                onClick={() => handleMovieClick(movie.Title)}
-              >
-                <div className="w-full h-80 sm:h-72 bg-gray-200">
-                  <img
-                    src={movie.Poster}
-                    alt={movie.Title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                <div className="absolute bottom-0 w-full bg-gradient-to-t from-black/80 p-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <p className="text-lg font-bold">
-                    {movie.Title} ({movie.Year})
-                  </p>
-                  <p className="text-sm text-gray-300">
-                    IMDb ID: {movie.imdbID}
-                  </p>
-                </div>
-              </div>
+              
+              <MovieComp 
+              key={movie.imdbID}
+              Title={movie.Title}
+              Poster={movie.Poster}
+              Year={movie.Year}
+              />
             ))
           ) : (
             <p className="text-center text-gray-500 col-span-full">

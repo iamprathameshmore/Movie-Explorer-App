@@ -13,7 +13,8 @@ const UserModelSchema = new mongoose.Schema({
         title: String,
         year: Number,
         poster: String
-    }]
+    }
+]
 });
 
 const UserModel = mongoose.model("User", UserModelSchema);

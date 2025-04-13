@@ -12,6 +12,8 @@ async function UserSignUpController(req, res) {
         });
     }
 
+    console.log(name, email)
+
     try {
        
         const userExists = await UserModel.findOne({ email: email });
@@ -35,16 +37,18 @@ async function UserSignUpController(req, res) {
         const token = getToken({ id: newUser.id, name: newUser.name, email: newUser.email });
 
        
-        await SendMail({
-            to: email,
-            subject: "Sign Up To Movie App",
-            token: token
-        });
+        // await SendMail({
+        //     to: email,
+        //     subject: "Sign Up To Movie App",
+        //     token: token
+        // });
+
 
         
         return res.status(200).json({
             success: true,
             msg: "Mail sent successfully",
+            token:token
         });
 
     } catch (error) {

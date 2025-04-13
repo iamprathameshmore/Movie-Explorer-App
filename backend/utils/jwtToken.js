@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const key = process.env.KEY;
+const key = 'hello';
 
 function getToken({ id, name, email }) {
     const token = jwt.sign({ id, name, email }, key);

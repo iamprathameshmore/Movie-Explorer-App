@@ -11,7 +11,7 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-DBConnection(process.env.DATABASE_URL)
+DBConnection("mongodb://localhost:27017")
 app.listen(PORT, console.log(`hello From ${PORT}`))
 
 
